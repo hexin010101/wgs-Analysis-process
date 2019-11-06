@@ -64,7 +64,7 @@ gatk HaplotypeCaller \
 > 这里非常费时间,每个样本需要三个半小时左右  而且gatk的HaplotypeCaller的spark功能目前还没有开发完成，可以python脚本多进程运行并行计算
 > 
 ```
-import multiprocessing
+from multiprocessing import Pool
 import subprocess
 
 s = ['C001','C002','C003']
@@ -77,9 +77,11 @@ def run(num):
             -O  seq{}.g.vcf """.format(num,num)
     subprocess.getoutput(cmd)
 if __name__ == '__main__':
+    p = Pool(5)
     for i in s:
-        p = multiprocessing.Process(target=run, args=(i,))
-        p.start()
+        p.apply_async(run,(i,))
+    p.close()
+    p.join()
 ```
 > 这里的每一个样本对比排序完成之后的文件名是seq_C00.sorted.markdup.bam
 
