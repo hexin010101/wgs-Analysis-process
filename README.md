@@ -89,7 +89,7 @@ if __name__ == '__main__':
 (在大量产生的gvcf文件有的文件索引可能会出问题报错，可删除索引文件重新生成索引
 < `bgzip sample.g.vcf`
 `tabix -p vcf sample.g.vcf.gz`)
-
+也有可能是系统内存不够，这里就需要升级配置
 这里有两种方式  一种是传统的combineGVCFs
 ```
 gatk  combineGVCFs \
