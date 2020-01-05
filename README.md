@@ -74,7 +74,7 @@ def run(num):
             -R ref.fa \
             --emit-ref-confidence GVCF \
             -I  seq_{}.sorted.markdup.bam \
-            -O  seq{}.g.vcf """.format(num,num)
+            -O  seq{}.g.vcf.gz """.format(num,num)
     subprocess.getoutput(cmd)
 if __name__ == '__main__':
     p = Pool(5)
@@ -86,6 +86,10 @@ if __name__ == '__main__':
 > 这里的每一个样本对比排序完成之后的文件名是seq_C00.sorted.markdup.bam
 
 ####  合并GVCF文件
+(在大量产生的gvcf文件有的文件索引可能会出问题报错，可删除索引文件重新生成索引
+< `bgzip sample.g.vcf`
+`tabix -p vcf sample.g.vcf.gz`)
+
 这里有两种方式  一种是传统的combineGVCFs
 ```
 gatk  combineGVCFs \
