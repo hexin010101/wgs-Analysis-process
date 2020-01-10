@@ -31,7 +31,7 @@ https://software.broadinstitute.org/gatk/)
 ****
 ##### 二.处理文件
 ###### 将read比对到参考基因组
- `bwa mem -t 4 -R '@RG\tID:foo\tPL:illumina\tSM:seq' seq_1.fastaq.gz seq_2.fastaq.gz | samtools view -Sb -> seq.bam
+ `bwa mem -t 4 -R '@RG\tID:foo\tPL:illumina\tSM:seq' ref.fasta seq_1.fastaq.gz seq_2.fastaq.gz | samtools view -Sb -> seq.bam
 `
 1. 首先利用bwa mem比对模块将E.coli K12质控后的测序数据定位到其参考基因组上（我们这里设置了4个线程来完成比对，根据电脑性能可以适当调大），同时通过管道（'|' 操作符）将比对数据流引到samtools转换为BAM格式（SAM的二进制压缩格式），然后重定向('>'操作符)输出到文件中保存下来。
 
