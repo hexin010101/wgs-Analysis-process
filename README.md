@@ -22,6 +22,8 @@ https://software.broadinstitute.org/gatk/)
      >> 完成之后 会看到几个ref.fasta为前缀的文件
     > 2. 为参考序列生成dict文件
      ` gatk CreateSequenceDictionary -R ref.fasta -O ref.dict` 
+    > 3. samtools 建索引
+    `samtools faidx ref.fasta`
 2. 下载测序文件
    ` fastaq-dump --split-files SRR*****`
 >下载的文件是双末端测序从两端读的read1和read2
