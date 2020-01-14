@@ -104,20 +104,16 @@ gatk  combineGVCFs \
 ```
 第二种方式是为每条染色体建立一个数据库  ，速度快
 ```
-import subprocess
-s = ['chr01','chr02','chr03','chr04','chr05','chr06','chr07']
-def run(chr):
-    cmd = """gatk  GenomicsDBImport  \
+gatk  GenomicsDBImport  \
     -V C001.g.vcf  \
     -V C002.g.vcf  \ 
     -V C003.g.vcf  \
-    --genomicsdb-workspace-path database_{} -L {}""".format(chr,chr)
-    subprocess.getoutput(cmd)
-
-if __name__ == '__main__':
-    for i in s:
-        run(i)
+    --genomicsdb-workspace-path database_chr1 \
+    -L chr1
 ```
+
+
+
 通过gvcf筛选变异
 ```
 gatk GenotypeGVCFs \
@@ -125,6 +121,8 @@ gatk GenotypeGVCFs \
 -V combine.g.vcf \(-V gendb://database_chr01)
 -O seq.vcf
 ```
+
+
 > 用数据库筛选变异，只能每一条染色体分开筛选，这样效率高
 ***
 #### 四. 对筛选到的变异进行过滤分离
