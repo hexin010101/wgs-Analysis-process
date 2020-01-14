@@ -178,3 +178,14 @@ http://snpeff.sourceforge.net/SnpEff_manual.html)
 `java -jar snpEff.jar build -gff3 -v Rice`
 5. 进行序列注释
 `java -jar snpEff.jar Rice SNP.filter.vcf.gz > rice.ann.vcf`
+#### 六. 通过分割任务来提高速度
+> 在HaplotypeCaller和GenomicsDBImport这两步中，通过指定 -L 参数来分割每次运行的区间，从而多线程多节点运行提高速度
+
+1. 策略一：按照染色体进行分割
+2. 策略二：按照染色体的NNN区域来进行分割
+> 这里用到了seqkit locate 定位染色体上NNN， 然后用bedtools complement 得到后续输入的bed文件
+```
+seqkit locate -j 20 -Pp '"N{10,}"' ref.fasta | tail -n+2 | awk '{print $1"\t"$5"\t"$6}' > ath_n_pos.bed
+bioawk -c fastx '{print $name"\t"length($seq)}' ref.fasta > tair10.txt
+bedtools complement -i ath_n_pos.bed -g tair10.txt  > tair10_interval.bed
+```
