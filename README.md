@@ -179,7 +179,7 @@ http://snpeff.sourceforge.net/SnpEff_manual.html)
 5. 进行序列注释
 `java -jar snpEff.jar Rice SNP.filter.vcf.gz > rice.ann.vcf`
 #### 六. 通过分割任务来提高速度
-> 在HaplotypeCaller和GenomicsDBImport这两步中，通过指定 -L 参数来分割每次运行的区间，从而多线程多节点运行提高速度
+> 在HaplotypeCaller和GenomicsDBImport这两步中，通过指定 -L 参数来分割每次运行的区间，从而多进程多节点运行提高速度
 
 1. 策略一：按照染色体进行分割
 2. 策略二：按照染色体的NNN区域来进行分割
