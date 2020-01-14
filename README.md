@@ -189,3 +189,4 @@ seqkit locate -j 20 -Pp '"N{10,}"' ref.fasta | tail -n+2 | awk '{print $1"\t"$5"
 bioawk -c fastx '{print $name"\t"length($seq)}' ref.fasta > tair10.txt
 bedtools complement -i ath_n_pos.bed -g tair10.txt  > tair10_interval.bed
 ```
+最后产生了大量vcf文件通过gatk提供的MergeVcfs工具来合并结果
