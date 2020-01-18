@@ -155,12 +155,19 @@ gatk VariantFiltration \
 -O         INDEL.filter.vcf
 ```
 
+
+3. 提取通过filter的结果
+gatk SelectVariants  -V SNP.filter.gz --exclude-filtered true -O filter.vcf.gz
+
 > QualByDepth(QD): 变异位点可信度除以未过滤的非参考read数 
 > FisherStrand (FS): Fisher精确检验评估当前变异是strand bias的可能性，这个值在0-60间 
 > RMSMappingQuality (MQ): 所有样本中比对质量的平方根
 > MappingQualityRankSumTest (MQRankSum): 根据REF和ALT的read的比对质量来评估可信度
 > ReadPosRankSumTest (ReadPosRankSum) : 通过变异在read的位置来评估变异可信度，通常在read的两端的错误率比较高
 > StrandOddsRatio (SOR) : 综合评估strand bias的可能性
+
+
+
 
 >> 对结果进行压缩
 `bgzip SNP.filter.vcf`
