@@ -153,11 +153,13 @@ gatk VariantFiltration \
 --filter-expression "QD < 2.0 || FS > 200.0 || SOR > 10.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0" \
 --filter-name "Filter" \
 -O         INDEL.filter.vcf
-```
 
 
 3. 提取通过filter的结果
 gatk SelectVariants  -V SNP.filter.gz --exclude-filtered true -O filter.vcf.gz
+```
+
+
 
 > QualByDepth(QD): 变异位点可信度除以未过滤的非参考read数 
 > FisherStrand (FS): Fisher精确检验评估当前变异是strand bias的可能性，这个值在0-60间 
