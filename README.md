@@ -66,6 +66,7 @@ gatk HaplotypeCaller \
 > 这里非常费时间,每个样本需要很长时间 而且gatk的HaplotypeCaller的spark功能目前还没有开发完成，可以python脚本多进程运行并行计算，如果是一个样本高深度测序，也可以指定 -L 参数分每条染色体并行跑会快很多
 > 
 ```
+#此处为写的python脚本代码 开多个进程
 from multiprocessing import Pool
 import subprocess
 
