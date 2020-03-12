@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
 这里有两种方式  一种是传统的combineGVCFs
 ```
-gatk  combineGVCFs \
+gatk  CombineGVCFs \
  -V seq1.g.vcf \
 -V seq2.g.vcf  \
 -V seq3.g.vcf  \
