@@ -184,6 +184,7 @@ http://snpeff.sourceforge.net/SnpEff_manual.html)
  >添加一行 Rice.genome : Rice
 3. 在snpeff的安装目录下data目录创建Rice目录和genomes
 > 把基因组序列文件放在genomes下面  Rice下存放注释文件（gff3）
+> gff3文件改名为genes.gff
 4. 执行建数据库命令
 `java -jar snpEff.jar build -gff3 -v Rice`
 5. 进行序列注释
