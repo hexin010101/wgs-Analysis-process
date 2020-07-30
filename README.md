@@ -132,6 +132,7 @@ gatk GenotypeGVCFs \
 gatk SelectVariants \
 -select-type SNP \
 -V seq.vcf \
+--restrict-alleles-to BIALLELIC  \ #限制只有两种基因型
 -O SNP.vcf
 
 2.过滤SNP
@@ -145,6 +146,7 @@ gatk VariantFiltration \
 1.筛选INDEL
 gatk SelectVariants \
 -select-type INDEL\
+--restrict-alleles-to BIALLELIC  \ #限制只有两种基因型
 -V seq.vcf \
 -O INDEL.vcf
 
